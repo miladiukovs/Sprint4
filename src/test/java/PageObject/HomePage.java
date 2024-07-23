@@ -12,6 +12,8 @@ public class HomePage {
     //надо протестить
     private final String HOME_PAGE_URL = "https://qa-scooter.praktikum-services.ru/";
 
+//  private static final String cookieButtonId = "rcc-confirm-button";
+
     //локатор стрелки в блоке "Вопросы о важном"
     private String arrowButton = ".//div[@id='accordion__heading-%d']";
 
@@ -71,7 +73,7 @@ public class HomePage {
     private By confirmButton = By.xpath(".//button[text()='Да']");
 
     //локатор текста Заказ оформлен
-    private By succesfulOrder = By.xpath(".//div[text()='Заказ оформлен']");
+    private By succesfullOrder = By.xpath(".//div[text()='Заказ оформлен']");
 
     //локатор кнопки Посмотреть статус
     private By viewOrderStatusButton = By.xpath(".//button[text()='Посмотреть статус']");
@@ -141,7 +143,7 @@ public class HomePage {
     }
 
     public void checkSuccesfullOrderFormIsVisible() {
-        Assert.assertTrue(driver.findElement(succesfulOrder).isDisplayed());
+        Assert.assertTrue(driver.findElement(succesfullOrder).isDisplayed());
         driver.findElement(viewOrderStatusButton).click();
     }
 
