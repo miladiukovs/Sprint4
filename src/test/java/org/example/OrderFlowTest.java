@@ -1,4 +1,7 @@
+package org.example;
+
 import PageObject.HomePage;
+import PageObject.OrderPage;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -45,11 +48,11 @@ public class OrderFlowTest {
 
         return new Object[][] {
                 {HomePage.getOrderButtonHeader(),
-                        "Тест", "Тестов", "Москва, ул. Тестовая, д. 1", "Сокольники", "+79191919191",
-                        "26.06.24", "сутки", "black", "Оставьте у двери или долго-долго стучите в дверь соседям пока они не откроют дверь и прочитают стихотворение Маяковского о лошадях"},
+                        "Тест", "Тестов", "Москва, ул. Тверская, д. 1", "Сокольники", "+79090909090",
+                        "26", "сутки", "black", "коммент"},
                 {HomePage.getOrderButtonBody(),
-                        "Tо", "То", "Дзержинск, ул. Арбат, д. 3488", "Чистые пруды", "+0000000000",
-                        "08.08.21", "двое суток", "grey", "ТG4%"},
+                        "Толик", "Толиков", "Москва, ул. Тестовая, д. 1", "Чистые пруды", "+79898989898",
+                        "24", "двое суток", "grey", "тест"},
         };
     }
 
@@ -59,20 +62,20 @@ public class OrderFlowTest {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         HomePage objHomePage = new HomePage(driver);
-
+        OrderPage orderPage = new OrderPage(driver);
         driver.get(objHomePage.getHOME_PAGE_URL());
         objHomePage.hideCookieBanner();
 
         objHomePage.locateAndClickOrderButton(orderButtonClass);
 
-        objHomePage.fillUserData(userName, userLastname, userAddress, subwayStationName, userPhone);
-        objHomePage.clickNextButton();
+        orderPage.fillUserData(userName, userLastname, userAddress, subwayStationName, userPhone);
+        orderPage.clickNextButton();
 
-        objHomePage.fillDeliveryDetails(date, duration, colour, comment);
+        orderPage.fillDeliveryDetails(date, duration, colour, comment);
 
-        objHomePage.checkConfimationModalFormIsVisible();
+        orderPage.checkConfimationModalFormIsVisible();
 
-        objHomePage.checkSuccesfullOrderFormIsVisible();
+        orderPage.checkSuccesfullOrderFormIsVisible();
     }
 
     @After
